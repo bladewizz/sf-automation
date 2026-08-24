@@ -1,3 +1,7 @@
+greet();
+function greet () { console.log('Hello, welcome to the company profile!'); }
+
+
 const name = 'John Doe';
 const industry = 'Software Development';
 const employeeCount = 100;
@@ -11,5 +15,13 @@ let companyProfile = {
 console.log(companyProfile);
 console.log(`${name} works in the ${industry} industry and has ${employeeCount} employees with an annual revenue of $${annualRevenue}.`);
 
-console.log(typeof employeeCount); // Output: number
-console.log(typeof parentAccount); // Output: object (null is considered an object in JavaScript)
+function describeSize(count){
+return count > 50 ? 'large' : 'small';
+}
+
+const describeSize2 = function(count){
+  return count >= 100 ? 'large' : 'small';
+}
+
+console.log(describeSize(employeeCount));
+console.log(describeSize2(employeeCount));
