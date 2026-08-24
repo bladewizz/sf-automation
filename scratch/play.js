@@ -1,7 +1,3 @@
-greet();
-function greet () { console.log('Hello, welcome to the company profile!'); }
-
-
 const name = 'John Doe';
 const industry = 'Software Development';
 const employeeCount = 100;

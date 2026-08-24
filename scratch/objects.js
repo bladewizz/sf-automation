@@ -8,5 +8,9 @@ const account = {
   }
 };
 
-console.log(account.industry);
-console.log(account.billingAddress.city);
+const { name, industry } = account;
+console.log(name);
+console.log(industry);
+
+console.log(name);
+console.log(industry);
