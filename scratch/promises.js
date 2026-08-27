@@ -13,3 +13,10 @@ const order = new Promise((resolve) => {
 });
 
 order.then((result) => console.log(result));
+
+async function getOrder() {
+    const result = order;
+    console.log(result);
+}
+
+getOrder();
