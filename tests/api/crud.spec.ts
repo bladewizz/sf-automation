@@ -1,4 +1,10 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, APIRequestContext } from '@playwright/test';
+
+const getAccount = async (request: APIRequestContext, instanceUrl: string, token: string, accountId: string) => {
+  return await request.get(`${instanceUrl}/services/data/v60.0/sobjects/Account/${accountId}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
 
 test.describe.serial('Account CRUD lifecycle', () => {
   let token: string;
@@ -32,9 +38,7 @@ test.describe.serial('Account CRUD lifecycle', () => {
   });
 
   test('READ the account', async ({ request }) => {
-    const res = await request.get(`${instanceUrl}/services/data/v60.0/sobjects/Account/${accountId}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const res = await getAccount(request, instanceUrl, token, accountId);
     expect(res.status()).toBe(200);
     const body = await res.json();
     expect(body.Id).toBe(accountId);
@@ -46,24 +50,19 @@ test.describe.serial('Account CRUD lifecycle', () => {
       headers: { Authorization: `Bearer ${token}` },
       data: { Name: 'CRUD Test Corp Updated' },
     });
-    // Optionally, you can read back the account to verify the update
-    const verifyRes = await request.get(`${instanceUrl}/services/data/v60.0/sobjects/Account/${accountId}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const verifyRes = await getAccount(request, instanceUrl, token, accountId);
     const verifyBody = await verifyRes.json();
-    expect(verifyBody.Name).toBe('CRUD Test Corp Updated');
     expect(res.status()).toBe(204);
+    expect(verifyBody.Name).toBe('CRUD Test Corp Updated');
   });
 
   test('DELETE the account', async ({ request }) => {
     const res = await request.delete(`${instanceUrl}/services/data/v60.0/sobjects/Account/${accountId}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    const verifyRes = await request.get(`${instanceUrl}/services/data/v60.0/sobjects/Account/${accountId}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    expect(verifyRes.status()).toBe(404);
+    const verifyRes = await getAccount(request, instanceUrl, token, accountId);
     expect(res.status()).toBe(204);
+    expect(verifyRes.status()).toBe(404);
   });
 });
 

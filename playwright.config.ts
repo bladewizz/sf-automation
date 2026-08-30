@@ -38,17 +38,25 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
+      testIgnore: '**/api/**', // Ignore API tests for this project
       use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'firefox',
+      testIgnore: '**/api/**', // Ignore API tests for this project
       use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'webkit',
+      testIgnore: '**/api/**', // Ignore API tests for this project
       use: { ...devices['Desktop Safari'] },
+    },
+
+    {
+      name: 'api',
+      testDir: './tests/api', // Specify the directory for API tests
     },
 
     /* Test against mobile viewports. */
