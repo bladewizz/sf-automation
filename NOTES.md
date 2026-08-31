@@ -7,4 +7,4 @@ await is like hit the brakes, async is like having brakes in the first place
 import export requires both receiver and giver files to both be modules
 add keys to an .env file and always make sure its added in the .gitignore
 then pull those keys as variables from the .env to the yaml file in the github folder
-
+Each CRUD operation = an HTTP method + an endpoint + assert the right status code + assert the body
