@@ -12,3 +12,13 @@ test('lands on Lightning home when authenticated', async ({ page }) => {
   // proof #2: something real is visible on the page
   await expect(page.getByRole('button', { name: 'App Launcher' })).toBeVisible({ timeout: 30000 });
 });
+
+test('setup page is reachable without logging in', async ({ page }) => {
+  await page.goto('https://orgfarm-47bf10203e-dev-ed.develop.my.salesforce.com/lightning/setup/SetupOneHome/home');
+  await expect(page).toHaveURL(/setup/, { timeout: 30000 });
+});
+
+test('accounts list is reachable without logging in', async ({ page }) => {
+  await page.goto('https://orgfarm-47bf10203e-dev-ed.develop.my.salesforce.com/lightning/o/Account/list');
+  await expect(page).toHaveURL(/Account/, { timeout: 30000 });
+});
