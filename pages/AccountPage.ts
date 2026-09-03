@@ -1,6 +1,5 @@
 import { Page, Locator } from '@playwright/test';
 
-const ORG_URL = 'https://orgfarm-47bf10203e-dev-ed.develop.my.salesforce.com';
 
 export class AccountPage {
   readonly page: Page;
@@ -16,7 +15,7 @@ export class AccountPage {
   }
 
   async gotoList() {
-    await this.page.goto(`${ORG_URL}/lightning/o/Account/list`);
+    await this.page.goto('/lightning/o/Account/list');
   }
 
   async createAccount(name: string) {
