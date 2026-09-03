@@ -2,6 +2,10 @@ import { test, expect } from '@playwright/test';
 
 test.use({ storageState: 'playwright/.auth/user.json' });
 
+test.beforeEach(() => {
+  test.skip(!!process.env.CI, 'Requires a local authenticated session (playwright/.auth/user.json); not available in CI.');
+});
+
 test('create an account via the UI', async ({ page }) => {
   // Step 1: go to the Accounts list page
   await page.goto('https://orgfarm-47bf10203e-dev-ed.develop.my.salesforce.com/lightning/o/Account/list');
