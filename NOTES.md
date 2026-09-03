@@ -15,3 +15,5 @@ nested object access records[0].CreatedBy.Name (from 2.3)
 the auth beforeAll + shared let pattern (from 3.6)
 the { request } fixture and /query call (from 3.5)
 the api-project split so it runs once, not 3× (from 3.6)
+for lightning, auth must be stored as a cookie and then reused for tests
+mfa is not viable for automation 
