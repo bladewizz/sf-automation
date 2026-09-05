@@ -18,6 +18,10 @@ export class AccountPage {
     await this.page.goto('/lightning/o/Account/list');
   }
 
+  async gotoRecord(id: string) {
+    await this.page.goto(`/lightning/r/Account/${id}/view`);
+  }
+
   async createAccount(name: string) {
     await this.newButton.click();
     await this.nameInput.fill(name);
