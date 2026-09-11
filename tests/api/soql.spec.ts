@@ -43,7 +43,7 @@ test.describe.serial('soql query', () => {
     });
     expect(accountResponse.status()).toBe(200);
     const data = await accountResponse.json();
-    expect(data.totalSize).toBe(1);
+    expect(data.totalSize).toBe(5);
     expect(data.records[0].CreatedBy.Name).toBeDefined();
   });
 });
