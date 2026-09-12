@@ -8,7 +8,7 @@ test.beforeEach(() => {
 });
 
 test('lands on Lightning home when authenticated', async ({ page }) => {
-  await page.goto('https://orgfarm-47bf10203e-dev-ed.develop.my.salesforce.com/');
+  await page.goto('/');
 
   // proof #1: the saved session redirected us into Lightning, not the login page
   await expect(page).toHaveURL(/lightning/, { timeout: 30000 });
@@ -18,11 +18,11 @@ test('lands on Lightning home when authenticated', async ({ page }) => {
 });
 
 test('setup page is reachable without logging in', async ({ page }) => {
-  await page.goto('https://orgfarm-47bf10203e-dev-ed.develop.my.salesforce.com/lightning/setup/SetupOneHome/home');
+  await page.goto('/lightning/setup/SetupOneHome/home');
   await expect(page).toHaveURL(/setup/, { timeout: 30000 });
 });
 
 test('accounts list is reachable without logging in', async ({ page }) => {
-  await page.goto('https://orgfarm-47bf10203e-dev-ed.develop.my.salesforce.com/lightning/o/Account/list');
+  await page.goto('/lightning/o/Account/list');
   await expect(page).toHaveURL(/Account/, { timeout: 30000 });
 });
